@@ -1,8 +1,8 @@
 # Casino-Virtual
 
-Proyecto Programación Estructurada 
+## Proyecto Programación Estructurada 
 
-*Equipo "404"
+### *Equipo "404"
 - Manzur Tello Wilbert
 - Peña Ojeda Patricio
 - Reyes Tec José
