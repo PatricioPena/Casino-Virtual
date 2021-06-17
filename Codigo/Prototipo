@@ -1,1 +1,101 @@
-
+#include <stdio.h>
+#include <conio.h>
+int bienvenida();
+void crear_cuenta();//TXT
+void ingresar_cuenta();//TXT
+int menu_principal();
+void juego_bingo();//TODOS LOS JUEGOS LOS PUSE EN VOID POR EL MOMENTO
+void juego_ruleta();
+void juego_craps();
+void juego_blackjack();
+void recargar_creditos();
+int main(){
+	int accion_cuenta, accion_jugador;
+	accion_cuenta = bienvenida();
+	switch (accion_cuenta){
+		case 1: crear_cuenta(); break;
+		default: ingresar_cuenta();
+	}
+	getch ();//Pausa para menu no salga rapido po mientras  
+	do {
+		accion_jugador = menu_principal();
+		
+		switch (accion_jugador){
+		case 1: juego_bingo(); break;
+		case 2: juego_ruleta(); break;
+		case 3: juego_craps(); break;
+		case 4: juego_blackjack(); break;
+		case 5: recargar_creditos(); break;
+		default: printf ("Adios"); break;
+		}
+	} while(accion_jugador!=6);
+	
+	
+	getch();
+	return 0;
+}
+int bienvenida(){
+	int i;
+	printf("____________________________________________________________________\n");
+	printf("\t\t\tC A S I N O   L I V E\n");
+	printf("____________________________________________________________________\n");
+	printf("\t1.-Crear cuenta \n");
+	printf("\t2.-Ingresar \n");
+	printf("¿Que accion desea realizar? "); scanf("%d", &i);
+	return i; 
+	
+}
+void crear_cuenta(){
+	printf("____________________________________________________________________\n");
+	printf("\t\t\tCrear una nueva cuenta \n");
+	printf("____________________________________________________________________\n");
+	printf("\tIntroduce un nombre de usuario:\n");
+	printf("\tIntroude una contraseña: \n");
+}
+void ingresar_cuenta(){
+	printf("____________________________________________________________________\n");
+	printf("\t\t\tIngreso de cuenta existente \n");
+	printf("____________________________________________________________________\n");
+	printf("\tUsuario: \n");
+	printf("\tContraseña: \n");
+}
+int menu_principal(){
+	int i;
+	printf("____________________________________________________________________\n");
+	printf("\t\t\t\tMENU\n");
+	printf("____________________________________________________________________\n");
+	printf("\t1.-Jugar Bingo\n\t2.-Jugar Ruleta\n\t3.-Jugar Craps\n\t4.-Jugar Blackjack\n\t5.-Recargar Creditos\n\t6.-Salir\n");
+	printf("¿Que accion desea realizar? "); scanf("%d", &i);
+	return i;
+}
+void juego_bingo(){
+	printf("____________________________________________________________________\n");
+	printf("\t\t\t\tBINGO\n");
+	printf("____________________________________________________________________\n");
+	//CODIGO DEL JUEGO
+}
+void juego_ruleta(){
+	printf("____________________________________________________________________\n");
+	printf("\t\t\t\tRuleta\n");
+	printf("____________________________________________________________________\n");
+	//CODIGO DEL JUEGO
+}
+	
+void juego_craps(){
+	printf("____________________________________________________________________\n");
+	printf("\t\t\t\tCRAPS\n");
+	printf("____________________________________________________________________\n");
+	//CODIGO DEL JUEGO
+}
+void juego_blackjack(){
+	printf("____________________________________________________________________\n");
+	printf("\t\t\t\tBlack jakc\n");
+	printf("____________________________________________________________________\n");
+	//CODIGO DEL JUEGO
+}
+void recargar_creditos(){
+	printf("____________________________________________________________________\n");
+	printf("\t\t\t\tRECARGA\n");
+	printf("____________________________________________________________________\n");
+	//CODIGO DEL JUEGO
+}
