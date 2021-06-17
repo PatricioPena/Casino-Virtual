@@ -1,10 +1,3 @@
 
-Requerimientos 	OE001 	OE002 	OE003 	OE004 	OE005 
-RF-001  	 	  	  x	  	  
-RF-002 	  		  	x  	  
-RF-003  	  	  	  		  x
-RF-004  	  	  		  	                          x
-RF-005  	  	  	  	  	                        x
-RF-006  	  	  	  		          x
-RF-007  	  	  	 	  	                  x
-RF-008 	  	  	  	  	                  x
+### Requerimientos 	  	  	  	                  
+![image](https://user-images.githubusercontent.com/73364591/122480899-5a79b580-cf93-11eb-815c-fba47c661955.png)
