@@ -1,101 +1,23 @@
-#include <stdio.h>
-#include <conio.h>
-int bienvenida();
-void crear_cuenta();//TXT
-void ingresar_cuenta();//TXT
-int menu_principal();
-void juego_bingo();//TODOS LOS JUEGOS LOS PUSE EN VOID POR EL MOMENTO
-void juego_ruleta();
-void juego_craps();
-void juego_blackjack();
-void recargar_creditos();
-int main(){
-	int accion_cuenta, accion_jugador;
-	accion_cuenta = bienvenida();
-	switch (accion_cuenta){
-		case 1: crear_cuenta(); break;
-		default: ingresar_cuenta();
-	}
-	getch ();//Pausa para menu no salga rapido po mientras  
-	do {
-		accion_jugador = menu_principal();
-		
-		switch (accion_jugador){
-		case 1: juego_bingo(); break;
-		case 2: juego_ruleta(); break;
-		case 3: juego_craps(); break;
-		case 4: juego_blackjack(); break;
-		case 5: recargar_creditos(); break;
-		default: printf ("Adios"); break;
-		}
-	} while(accion_jugador!=6);
-	
-	
-	getch();
-	return 0;
-}
-int bienvenida(){
-	int i;
-	printf("____________________________________________________________________\n");
-	printf("\t\t\tC A S I N O   L I V E\n");
-	printf("____________________________________________________________________\n");
-	printf("\t1.-Crear cuenta \n");
-	printf("\t2.-Ingresar \n");
-	printf("¿Que accion desea realizar? "); scanf("%d", &i);
-	return i; 
-	
-}
-void crear_cuenta(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\tCrear una nueva cuenta \n");
-	printf("____________________________________________________________________\n");
-	printf("\tIntroduce un nombre de usuario:\n");
-	printf("\tIntroude una contraseña: \n");
-}
-void ingresar_cuenta(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\tIngreso de cuenta existente \n");
-	printf("____________________________________________________________________\n");
-	printf("\tUsuario: \n");
-	printf("\tContraseña: \n");
-}
-int menu_principal(){
-	int i;
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tMENU\n");
-	printf("____________________________________________________________________\n");
-	printf("\t1.-Jugar Bingo\n\t2.-Jugar Ruleta\n\t3.-Jugar Craps\n\t4.-Jugar Blackjack\n\t5.-Recargar Creditos\n\t6.-Salir\n");
-	printf("¿Que accion desea realizar? "); scanf("%d", &i);
-	return i;
-}
-void juego_bingo(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tBINGO\n");
-	printf("____________________________________________________________________\n");
-	//CODIGO DEL JUEGO
-}
-void juego_ruleta(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tRuleta\n");
-	printf("____________________________________________________________________\n");
-	//CODIGO DEL JUEGO
-}
-	
-void juego_craps(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tCRAPS\n");
-	printf("____________________________________________________________________\n");
-	//CODIGO DEL JUEGO
-}
-void juego_blackjack(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tBlack jakc\n");
-	printf("____________________________________________________________________\n");
-	//CODIGO DEL JUEGO
-}
-void recargar_creditos(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tRECARGA\n");
-	printf("____________________________________________________________________\n");
-	//CODIGO DEL JUEGO
-}
+# Trabajo de Codificación
+
+## Herramientas 
+
+### Propuesta de Herramientas
+Como equipo, decidimos utilizar herramientas que cumplan con ciertos requisitos que nosotros como miembros del equipo y alumnos podamos necesitar para cumplir la manera en la que nos organizariamos, la manera en la que vamos a monitorear los avances de cada miembro y llevar a cabo bitácoras en las que muestren nuestros avances, tambien que cumplan tres aspectos: 
+-Facil de utilizar 
+-Gratuita
+-Experiencia utilizando la herramienta
+
+Estas son Git Hub, Zinjai y Whatsapp
+
+### Organización y monitoreo
+La primera va a ser GitHub, esta herramienta nos servirá para poder compartir nuestros códigos que nos van a servir para realizar el proyecto; así como toda la documentación que llevaremos a cabo para cumplir con lo solicitado en las entregas de los avances y la entrega final, ya que todos los miembros del equipo pueden tener un fácil acceso a ella, a toda la información que hemos recolectado y las diferentes versiones que tenemos del proyecto en caso que necesitemos ir a versiones anteriores.
+
+### Trabajo de codificación
+Nuestra segunda herramienta con la que trabajaremos este proyecto será zinjai, en esta aplicación codificaremos todo nuestro proyecto, ya que es una herramienta fácil de usar y con la que todos los integrantes estamos familiarizados, así obtendremos resultados más rápidos y de mejor calidad a la hora de programar.
+
+### Bitácoras 
+La tercera y última herramienta que utilizaremos será Whatsapp, al ser una aplicación tan versátil y fácil de utilizar, elegimos Whatsapp, en ella nos comunicaremos como equipo en caso de que exista alguna duda sobre el proyecto, realizaremos nuestras bitácoras y cada tres días hablaremos sobre nuestros avances en el proyecto y como podemos mejorar cada apartado de este.
+
+
+
