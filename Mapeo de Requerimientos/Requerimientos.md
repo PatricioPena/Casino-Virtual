@@ -3,6 +3,7 @@
 ### RF-001 	Menú principal
  
 Descripción: 	Al momento de iniciar el programa, tendrá la opción de ingresar al menú de juegos creando una cuenta nueva o con una hecha anteriormente.
+
 Comentarios: 	Ambas opciones se encontrarán en el menú principal del software.
 
 ###  RF-002	Crear cuenta
