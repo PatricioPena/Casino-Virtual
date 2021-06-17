@@ -9,17 +9,20 @@ Comentarios: 	Ambas opciones se encontrarán en el menú principal del software.
 ###  RF-002	Crear cuenta
  
 Descripción: 	Al seleccionar esta opción, se le solicitará un nombre de usuario y una contraseña al usuario, para tener donde almacenar la cantidad del saldo.
+
 Comentarios: 	La contraseña y el nombre de usuario no solicitaran especificaciones y caracteres especiales para que sean válidos.
 
 ### RF-003	Menú de juegos
  
 Descripción: 	El sistema contará con un menú secundario, donde podrás seleccionar cualquiera de los 4 juegos que se ofrecen, al igual que la opción de recargar y ver su saldo actual.
+
 Comentarios: 	El menú aparecerá después de seleccionar en el menú principal la opción de “Ingresar a CasinoLive”.
 
 
 ### RF-004 Recargar créditos
  
 Descripción: 	El programa requerirá créditos para poder interactuar con los múltiples juegos, ya que será necesario tener una cantidad mínima de saldo para jugar, por lo que se dispondrá de la recarga.
+
 Comentarios: 	Se empezará con 20 créditos después de crear una cuenta y se podrá ver el saldo con el que dispone el usuario.
 
 
@@ -27,21 +30,25 @@ Comentarios: 	Se empezará con 20 créditos después de crear una cuenta y se po
 ### RF-005 Ingresar apuesta
  
 Descripción: 	Antes de iniciar cada juego, aparecerá el mensaje de  cuento es la cantidad de créditos que desea apostar.
+
 Comentarios: 	El saldo mínimo para jugar será de 1 crédito y no habrá uno máximo.
 
 ### RF-006 Conocer las reglas
  
 Descripción: 	El usuario en caso de requerirlo podrá acceder a las instrucciones de los juegos, aunque se mantendrán las reglas clásicas de cada para los usuarios que ya estén familiarizados con la forma correcta de jugar.
+
 Comentarios: 	Las reglas se encontrarán en un mismo apartado, todas juntas.
 
 ### RF-007 Regresar al menú principal
  
 Descripción: 	El sistema permite al usuario regresar a la   pantalla del menú principal para poder elegir otra acción.
+
 Comentarios: 	La opción aparecerá en pantalla, una vez la partida del juego haya finalizado.
 
 ### RF-008 Cerrar programa
  
 Descripción: 	La aplicación debe dejar al usuario la opción de cerrar la aplicación
+
 Comentarios: 	La opción se encontrará después de finalizar cada partida de un juego.
 
 
