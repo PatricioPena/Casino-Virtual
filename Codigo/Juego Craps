@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
-	
-	/* constantes enumeradas que almacenan el estado actual del juego*/
-	enum status {CONTINUA, GANA, PIERDE};
+
+/* constantes enumeradas que almacenan el estado actual del juego*/
+enum status {CONTINUA, GANA, PIERDE};
 /* Prototipo de la función tiraDados */
 int tiraDados (void);
-
+/* Función main */
 int main () {
 	printf("\n*************************************\n");
 	printf("           Bienvenido a Craps\n");
@@ -18,7 +18,7 @@ int main () {
 	
 	enum status  statusJuego;
 	
-	/*Randomizamos el generador de números
+	/*Randomizamos el generador de números mediante las funciones srand () y time () */
 	srand (time (NULL));
 	suma = tiraDados();
 	
@@ -55,7 +55,7 @@ int main () {
 		} else if (suma == 7) {
 			statusJuego = PIERDE;
 		}
-	} 
+	} /* Fin del while */
 	
 	/* Despliega el mensaje ve vencedor o derrotado */
 	if (statusJuego == GANA) {
@@ -63,8 +63,8 @@ int main () {
 	} else {
 		printf ("\nPERDISTE, SIGUE INTENTANDOLO\n");
 	}
-	return 0;
-} 
+	return 0; /* Indica que el programa terminaa con éxito */
+} /* Final del bloque main */
 
 /* Declaración de la función tiraDados */
 int tiraDados (void) {
@@ -77,7 +77,6 @@ int tiraDados (void) {
 	dado2 = 1 + rand() % 6;
 	sumaTemp = dado1 + dado2;
 	
-	/* Imprimimos los resultados del tiro de dados */
 	printf("\nPRESIONA ENTER PARA TIRAR LOS DADOS.");
 	getchar();
 	printf("TIRANDO LOS DADOS\n");
@@ -85,9 +84,10 @@ int tiraDados (void) {
 		printf("*");
 		sleep(1);
 	}
+	/* Imprimimos los resultados del tiro de dados */
 	printf("\nDado 1: %d", dado1);
 	printf("\nDado 2: %d", dado2);
-	printf ( "\nEl jugador ha obtenido una putuacion de %d\n\n", sumaTemp);
+	printf ( "El jugador ha obtenido una putuacion de %d + %d = %d\n", dado1, dado2, sumaTemp);
 	return sumaTemp;
-} 
+} /* Fin de la función tiraDados */
 
