@@ -3,7 +3,7 @@
 #include <time.h>
 #include <unistd.h>
 
-/* constantes enumeradas que almacenan el estado actual del juego*/
+//constantes enumeradas que almacenan el estado actual del juego
 enum status {CONTINUA, GANA, PIERDE};
 /* Prototipo de la función tiraDados */
 int tiraDados (void);
@@ -18,55 +18,59 @@ int main () {
 	
 	enum status  statusJuego;
 	
-	/*Randomizamos el generador de números mediante las funciones srand () y time () */
+	//Randomizamos el generador de números mediante las funciones srand () y time () 
 	srand (time (NULL));
 	suma = tiraDados();
 	
-	/* Determina el estado del juego basándose en la suma de los dados */
+	//Proceso
+	//Determina el estado del juego basándose en la suma de los dados 
 	switch (suma) {
-		/* El jugador gana en el primer tiro */
+		//El jugador gana en el primer tiro 
 	case 7:
 	case 11:
 		statusJuego = GANA;
 		break;
 		
-		/* El jugador pierde en el primer tiro */
+		//El jugador pierde en el primer tiro
 	case 2:
 	case 3:
 	case 12:
 		statusJuego = PIERDE;
 		break;
 		
-		/* El jugador continua */
+		// El jugador continua
 	default:
 		statusJuego = CONTINUA;
 		miPunto = suma;
 		printf ("\nEL PUNTO ESTABLECIDO ES %d\n\n",miPunto);
 		break;
-	} /* Fin del switch */
+	} //Fin del switch 
 	
-	/* Mientras el juego no se complete */
+	//Mientras el juego no se complete 
 	while (statusJuego == CONTINUA) {
 		suma = tiraDados ();
 		
-		/* Determinamos el estado del juego */
+		//Determinamos el estado del juego 
 		if (suma == miPunto) {
 			statusJuego = GANA;
 		} else if (suma == 7) {
 			statusJuego = PIERDE;
 		}
-	} /* Fin del while */
+	} // Fin del while 
 	
-	/* Despliega el mensaje ve vencedor o derrotado */
+	
+	//Salida
+	
+	//Despliega el mensaje ve vencedor o derrotado 
 	if (statusJuego == GANA) {
 		printf ("\nFELICIDADES, GANASTE\n");
 	} else {
 		printf ("\nPERDISTE, SIGUE INTENTANDOLO\n");
 	}
-	return 0; /* Indica que el programa terminaa con éxito */
-} /* Final del bloque main */
+	return 0; //Indica que el programa terminaa con éxito 
+} // Final del bloque main 
 
-/* Declaración de la función tiraDados */
+//Declaración de la función tiraDados 
 int tiraDados (void) {
 	int i;
 	int dado1;
@@ -77,16 +81,18 @@ int tiraDados (void) {
 	dado2 = 1 + rand() % 6;
 	sumaTemp = dado1 + dado2;
 	
+	//Entrada
 	printf("\nPRESIONA ENTER PARA TIRAR LOS DADOS.");
 	getchar();
 	printf("TIRANDO LOS DADOS\n");
 	for (i=0;i<=10;i+=1){
 		printf("*");
-		sleep(.5);
+		sleep(1);
 	}
-	/* Imprimimos los resultados del tiro de dados */
+	//Imprimimos los resultados del tiro de dados
 	printf("\nDado 1: %d", dado1);
 	printf("\nDado 2: %d", dado2);
 	printf ( "\nEl jugador ha obtenido una putuacion de %d + %d = %d\n", dado1, dado2, sumaTemp);
 	return sumaTemp;
-} /* Fin de la función tiraDados */
+} //Fin de la función tiraDados 
+
