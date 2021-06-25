@@ -1,1 +1,130 @@
+/*Ruleta
+Miguel Omar Salas Chalé*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define DIM 20
 
+char presentacion();
+
+void ruleta(int );
+
+int main ()
+{
+	char c;
+	int n=0 ,m[DIM] ,i ,premio ,segundos=7 ,puntos ;//declaración de variables para la función de ruleta
+	
+	srand(time(NULL));
+	
+	c=presentacion ();//se solicita al usuario el tipo de apuesta que desea hacer
+	printf ("Introduzca la cantidad de creditos que desea apostar\n");
+	scanf ("%d", &puntos);//se solicita la cantidad de puntos que quiere apostar
+	switch (c) {
+	case 'A' ://apuesta a numeros pares o impares
+		do {
+			printf ("1 - Apostar a los números pares \t 2 - Apostar a los números impares\n");
+			scanf ("%d",&n);}while(n!=1 && n!=2);
+		break;
+		
+	case 'B' ://apuesta a una columna
+		do {
+			printf ("Introduce el número de columna a la que quieres apostar\n");
+			printf ("1 - Apostar a la primera columna \t 1-4-7-10-13-16-19-22-25-28-31-34\n");
+			printf ("2 - Apostar a la segunda columna \t 2-5-8-11-14-17-20-23-26-29-32-35\n");
+			printf ("3 - Apostar a la tercera columna \t 3-6-9-12-15-18-21-24-27-30-33-36\n");
+			scanf ("%d",&n);}while(n!=1 && n!=2 && n!=3);
+		break;
+		
+	case 'C' ://apuesta a 3 numeros a elección del jugador
+		do {
+			printf ("Dime a los tres números que quieres apostar, separados por un espacio\n(Pueden ser del 1 al 36):\n");
+			for (i=0;i<3;i++)
+				scanf ("%d",&m[i]);
+		}
+		while((m[0]<=0 || m[0]>36) || (m[1]<=0 || m[1]>36) || (m[2]<=0 || m[2]>36));
+		break;
+		
+	case 'D' ://apuesta a 1 numero a elección del jugador
+		do {
+			printf ("Dime el número al que quieres apostar \n(Puede ser del 1 al 36):\n");
+			
+			scanf ("%d",&n);
+		}
+		while(n<=0 || n>36); break;
+	}
+	premio = rand() % 37;      //almacenamos el número premiado 
+	
+	ruleta(segundos);  //simulación de la ruleta girando
+	
+	system("cls");
+	
+	printf ("\nY el número ganador es... \n\n");
+	
+	printf ("\t%d\n\n",premio);
+	
+	if (premio==0) {
+		printf ("Gana la banca!\npierdes: %d puntos\n", puntos);
+		system ("pause");
+		return 0;}
+	
+	switch ( c ) {
+	case 'A' :
+		if ((n==1 && premio%2 == 0) || (n==2 && premio%2 == 1))//n=apuesta a numeros pares o impares saca modulo 2 a la variable premio para saber si es par o impar
+			printf ("Ganaste!:D \nObtienes: %d puntos\n", 2*puntos);
+		else printf ("Perdiste! Lastima:c \npierdes: %d puntos\n", puntos);
+		break;
+		
+	case 'B' :
+		if ((n==1 && premio%3 == 1) || (n==2 && premio%3 == 2) || (n==3 && premio%3 == 0))//n= columna apostada
+			printf ("Ganaste!:D \nObtienes: %d puntos\n", 2*puntos);
+		else printf ("Perdiste! Lastima:c \npierdes: %d puntos\n", puntos);
+		break;
+		
+	case 'C' :
+		if ((m[0]==premio) || (m[1]==premio) || (m[2]==premio))//m[]=al numero elegido para apostar(3)
+			printf ("Ganaste!:D \nObtienes: %d puntos\n", 2*puntos);
+		else printf ("Perdiste! Lastima:c \npierdes: %d puntos\n", puntos);
+		break;
+		
+	case 'D' :
+		if (n==premio)//n= al numero elegido para apostarle(solo 1)
+			printf ("Ganaste!:D \nObtienes: %d puntos\n", 2*puntos);
+		else printf ("Perdiste! Lastima:c \npierdes: %d puntos\n", puntos);
+		break;
+		
+	}
+	system ("pause");
+	return 0;
+}
+
+char presentacion()//Funcion que solicita el tipo de apuesta que quiere hacer el usuario
+	
+{
+	char c;
+	do {
+		
+		printf ("Bienvenido a la ruleta.\n\n");
+		
+		printf ("Que tipo de apuesta quieres realizar?\n (Para elegir escribe la mayuscula correspondiente: )\n\n");
+		
+		printf ("A - Pares o Impares \t B - Columna \t C - Terna \t D - Pleno (de un solo numero)\n");
+		
+		scanf ("%c",&c);
+		
+		system("cls"); } while (c!='A' && c!='B' && c!='C' && c!='D');
+	return c;
+}
+
+void ruleta(int segundos)//funcion que simula el girar de la ruleta
+{ 
+	int Seg1,Seg2;
+	Seg1=(int)clock()/CLOCKS_PER_SEC;
+	Seg2=Seg1;
+	while((Seg2-Seg1) < segundos){
+		if(clock()%400<10){
+			system("cls");
+			printf ("\nY la rueda gira y gira... \n\n\t%d",rand() % 37);
+		}
+		Seg2=(int)clock()/CLOCKS_PER_SEC;
+	}
+}
