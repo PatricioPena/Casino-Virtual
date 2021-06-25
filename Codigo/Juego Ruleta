@@ -1,15 +1,7 @@
 /*Ruleta
 Miguel Omar Salas Chalé*/
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#define DIM 20
 
-char presentacion();
-
-void ruleta(int );
-
-int main ()
+void juego_ruleta()
 {
 	char c;
 	int n=0 ,m[DIM] ,i ,premio ,segundos=7 ,puntos ;//declaración de variables para la función de ruleta
