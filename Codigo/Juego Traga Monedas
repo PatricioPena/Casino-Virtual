@@ -1,1 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include <conio.h>
+#include <unistd.h>
+int main(){
+	int primer, segundo, tercero, i, r;
+	printf ("Presiones ENTER para ingresar una moneda\n");
+	getch(); //Pagar un precio para jugar
+	do{
+		printf ("Presiones ENTER para empezar a girar\n");
+		getch();
+		srand (time (NULL));
+		printf("Girando");
+		for (i=0;i<3;i+=1){
+			printf(".");
+			sleep(1);
+		}
+		printf("\n");
+		printf("\t _______________________\n");
+		printf("\t|***********************|\n");
+		primer=1+rand()%(10-1);
+		printf( "\t|*****|%i|", primer);
+		segundo=1+rand()%(10-1);
+		printf( "  |%i|  ", segundo);
+		tercero=1+rand()%(10-1);
+		printf( "|%i|*****|", tercero);
+		printf("\n\t|***********************|\n");
+		if(primer==segundo && segundo==tercero){
+			printf("\t¡¡¡Felicidades has ganado!!!\n");
+		}else{
+			printf("\t*Suerte para la pr%cxima*\n", 162);
+		}
+		printf("\n¿Desea girar de nuevo?\n\t1.-SI\n\t2.-NO\n");scanf("%i",&r);
+	} while(r!=2);
+	
+	return 0;
+}
 
