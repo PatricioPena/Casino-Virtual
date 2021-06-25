@@ -1,16 +1,32 @@
 #include <stdio.h>
 #include <conio.h>
+#include<stdlib.h>
+#include<time.h>
+#include <unistd.h>
+
 int bienvenida();
+
 void crear_cuenta();//TXT
+
 void ingresar_cuenta();//TXT
+
 int menu_principal();
+
 void juego_bingo();//TODOS LOS JUEGOS LOS PUSE EN VOID POR EL MOMENTO
+
 void juego_ruleta();
 #define DIM 20
 char presentacion();
 void ruleta(int);
+
 void juego_craps();
+//constantes enumeradas que almacenan el estado actual del juego
+enum status {CONTINUA, GANA, PIERDE};
+/* Prototipo de la función tiraDados */
+int tiraDados (void);
+
 void juego_blackjack();
+
 void recargar_creditos();
 int main(){
 	int accion_cuenta, accion_jugador;
@@ -71,31 +87,308 @@ int menu_principal(){
 	printf("¿Que accion desea realizar? "); scanf("%d", &i);
 	return i;
 }
+/*{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{INICIA FUNCIONES DE LOS JUEGOS}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}*/
+
+////////////////////////////////////INICIA BLOQUES JUEGO TRAGAMONEDAS///////////////////////////////
 void juego_bingo(){
 	printf("____________________________________________________________________\n");
 	printf("\t\t\t\tBINGO\n");
 	printf("____________________________________________________________________\n");
 	//CODIGO DEL JUEGO
 }
-void juego_ruleta(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tRuleta\n");
-	printf("____________________________________________________________________\n");
-	//CODIGO DEL JUEGO
-}
+///////////////////////////TERMINA BLOQUES JUEGO TRAGAMONEDAS///////////////////////////////
+
+
+///////////////////////////INICIA BLOQUES JUEGO RULETA//////////////////////////////////////
+void juego_ruleta()
+{
+	char c;
+	int n=0 ,m[DIM] ,i ,premio ,segundos=7 ,puntos ;//declaración de variables para la función de ruleta
 	
+	srand(time(NULL));/////////////////////////probablemente haya que hacer solo 1 de estos
+	
+	c=presentacion ();//se solicita al usuario el tipo de apuesta que desea hacer
+	printf ("Introduzca la cantidad de creditos que desea apostar\n");
+	scanf ("%d", &puntos);//se solicita la cantidad de puntos que quiere apostar
+	switch (c) {
+	case 'A' ://apuesta a numeros pares o impares
+		do {
+			printf ("1 - Apostar a los números pares \t 2 - Apostar a los números impares\n");
+			scanf ("%d",&n);}while(n!=1 && n!=2);
+		break;
+		
+	case 'B' ://apuesta a una columna
+		do {
+			printf ("Introduce el número de columna a la que quieres apostar\n");
+			printf ("1 - Apostar a la primera columna \t 1-4-7-10-13-16-19-22-25-28-31-34\n");
+			printf ("2 - Apostar a la segunda columna \t 2-5-8-11-14-17-20-23-26-29-32-35\n");
+			printf ("3 - Apostar a la tercera columna \t 3-6-9-12-15-18-21-24-27-30-33-36\n");
+			scanf ("%d",&n);}while(n!=1 && n!=2 && n!=3);
+		break;
+		
+	case 'C' ://apuesta a 3 numeros a elección del jugador
+		do {
+			printf ("Dime a los tres números que quieres apostar, separados por un espacio\n(Pueden ser del 1 al 36):\n");
+			for (i=0;i<3;i++)
+				scanf ("%d",&m[i]);
+		}
+		while((m[0]<=0 || m[0]>36) || (m[1]<=0 || m[1]>36) || (m[2]<=0 || m[2]>36));
+		break;
+		
+	case 'D' ://apuesta a 1 numero a elección del jugador
+		do {
+			printf ("Dime el número al que quieres apostar \n(Puede ser del 1 al 36):\n");
+			
+			scanf ("%d",&n);
+		}
+		while(n<=0 || n>36); break;
+	}
+	premio = rand() % 37;      //almacenamos el número premiado 
+	
+	ruleta(segundos);  //simulación de la ruleta girando
+	
+	system("cls");
+	
+	printf ("\nY el número ganador es... \n\n");
+	
+	printf ("\t%d\n\n",premio);
+	
+	if (premio==0) {
+		printf ("Gana la banca!\npierdes: %d puntos\n", puntos);
+		system ("pause");
+		return 0;}
+	
+	switch ( c ) {
+	case 'A' :
+		if ((n==1 && premio%2 == 0) || (n==2 && premio%2 == 1))//n=apuesta a numeros pares o impares saca modulo 2 a la variable premio para saber si es par o impar
+			printf ("Ganaste!:D \nObtienes: %d puntos\n", 2*puntos);
+		else printf ("Perdiste! Lastima:c \npierdes: %d puntos\n", puntos);
+		break;
+		
+	case 'B' :
+		if ((n==1 && premio%3 == 1) || (n==2 && premio%3 == 2) || (n==3 && premio%3 == 0))//n= columna apostada
+			printf ("Ganaste!:D \nObtienes: %d puntos\n", 2*puntos);
+		else printf ("Perdiste! Lastima:c \npierdes: %d puntos\n", puntos);
+		break;
+		
+	case 'C' :
+		if ((m[0]==premio) || (m[1]==premio) || (m[2]==premio))//m[]=al numero elegido para apostar(3)
+			printf ("Ganaste!:D \nObtienes: %d puntos\n", 2*puntos);
+		else printf ("Perdiste! Lastima:c \npierdes: %d puntos\n", puntos);
+		break;
+		
+	case 'D' :
+		if (n==premio)//n= al numero elegido para apostarle(solo 1)
+			printf ("Ganaste!:D \nObtienes: %d puntos\n", 2*puntos);
+		else printf ("Perdiste! Lastima:c \npierdes: %d puntos\n", puntos);
+		break;
+		
+	}
+	system ("pause");
+	return 0;
+}
+
+char presentacion()//Funcion que solicita el tipo de apuesta que quiere hacer el usuario
+	
+{
+	char c;
+	do {
+		
+		printf ("Bienvenido a la ruleta.\n\n");
+		
+		printf ("Que tipo de apuesta quieres realizar?\n (Para elegir escribe la mayuscula correspondiente: )\n\n");
+		
+		printf ("A - Pares o Impares \t B - Columna \t C - Terna \t D - Pleno (de un solo numero)\n");
+		
+		scanf ("%c",&c);
+		
+		system("cls"); } while (c!='A' && c!='B' && c!='C' && c!='D');
+	return c;
+}
+
+void ruleta(int segundos)//funcion que simula el girar de la ruleta
+{ 
+	int Seg1,Seg2;
+	Seg1=(int)clock()/CLOCKS_PER_SEC;
+	Seg2=Seg1;
+	while((Seg2-Seg1) < segundos){
+		if(clock()%400<10){
+			system("cls");
+			printf ("\nY la rueda gira y gira... \n\n\t%d",rand() % 37);
+		}
+		Seg2=(int)clock()/CLOCKS_PER_SEC;
+	}
+}
+///////////////////////////////TERMINA BLOQUES FUNCION JUEGO RULETA///////////////////////////////////
+	
+//////////////////////////////INICIA BLOQUES JUEGO CRAPS///////////////////////////////
 void juego_craps(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tCRAPS\n");
-	printf("____________________________________________________________________\n");
-	//CODIGO DEL JUEGO
-}
+	printf("\n*************************************\n");
+	printf("           Bienvenido a Craps\n");
+	printf("              Diviertete\n");
+	printf("*************************************\n\n");
+	int suma;
+	int miPunto;
+	
+	enum status  statusJuego;
+	
+	//Randomizamos el generador de números mediante las funciones srand () y time () 
+	srand (time (NULL));
+	suma = tiraDados();
+	
+	//Proceso
+	//Determina el estado del juego basándose en la suma de los dados 
+	switch (suma) {
+		//El jugador gana en el primer tiro 
+	case 7:
+	case 11:
+		statusJuego = GANA;
+		break;
+		
+		//El jugador pierde en el primer tiro
+	case 2:
+	case 3:
+	case 12:
+		statusJuego = PIERDE;
+		break;
+		
+		// El jugador continua
+	default:
+		statusJuego = CONTINUA;
+		miPunto = suma;
+		printf ("\nEL PUNTO ESTABLECIDO ES %d\n\n",miPunto);
+		break;
+	} //Fin del switch 
+	
+	//Mientras el juego no se complete 
+	while (statusJuego == CONTINUA) {
+		suma = tiraDados ();
+		
+		//Determinamos el estado del juego 
+		if (suma == miPunto) {
+			statusJuego = GANA;
+		} else if (suma == 7) {
+			statusJuego = PIERDE;
+		}
+	} // Fin del while 
+	
+	
+	//Salida
+	
+	//Despliega el mensaje ve vencedor o derrotado 
+	if (statusJuego == GANA) {
+		printf ("\nFELICIDADES, GANASTE\n");
+	} else {
+		printf ("\nPERDISTE, SIGUE INTENTANDOLO\n");
+	}
+	return 0; //Indica que el programa terminaa con éxito 
+} // Final del bloque main 
+
+//Declaración de la función tiraDados 
+int tiraDados (void) {
+	int i;
+	int dado1;
+	int dado2;
+	int sumaTemp;
+	
+	dado1 = 1 + rand() % 6;
+	dado2 = 1 + rand() % 6;
+	sumaTemp = dado1 + dado2;
+	
+	//Entrada
+	printf("\nPRESIONA ENTER PARA TIRAR LOS DADOS.");
+	getchar();
+	printf("TIRANDO LOS DADOS\n");
+	for (i=0;i<=10;i+=1){
+		printf("*");
+		sleep(1);
+	}
+	//Imprimimos los resultados del tiro de dados
+	printf("\nDado 1: %d", dado1);
+	printf("\nDado 2: %d", dado2);
+	printf ( "\nEl jugador ha obtenido una putuacion de %d + %d = %d\n", dado1, dado2, sumaTemp);
+	return sumaTemp;
+} //Fin de la función tiraDados 
+//////////////////////////////////TERMINA BLOUES JUEGO CRAPS///////////////////////////////////
+
+///////////////////////////////////INICIA BLOQUES JUEGO 21/////////////////////////////////////
 void juego_blackjack(){
-	printf("____________________________________________________________________\n");
-	printf("\t\t\t\tBlack jakc\n");
-	printf("____________________________________________________________________\n");
-	//CODIGO DEL JUEGO
-}
+	//Declaran las variables
+	
+	int fin,pinta,num,suma,pc_num,pc;
+	srand(time(NULL));
+	
+	//Imprimen mensajes para el usuario
+	printf("EL JUEGO DE LAS 21,LA SUMA DE LAS CARTAS DEBE SER 21,\n");
+	printf("SI SU SUMA ES MAS ALTA QUE LA DE LA COMPUTADORA, ENTONCES USTED GANA EL JUEGO,\n");
+	printf("SI SU SUMA EXCEDE LOS 21, PIERDE DE INMEDIATO EL JUEGO.\n\n");
+	fin = 0;
+	suma = 0;
+	
+	
+	//RNG 
+	while(fin!=2){
+		num = (rand()%10)+1;
+		printf("%d ",num);
+		pinta = (rand()%4)+1;
+		if (pinta==1){
+			printf("de Oro\n\n");
+		}
+		if(pinta==2){
+			printf("de Basto\n\n");
+		}
+		if(pinta==3){
+			printf("de Copa\n\n");
+		}
+		if(pinta==4){
+			printf("de Espada\n\n");
+		}
+		
+		//Dependiendo las cantidades del usuario se le pregunta si continuar o retirarse con la cantidad actual
+		suma = suma + num;                     
+		printf("LA SUMA ES DE: %d\n\n",suma);
+		printf("DESEA PEDIR OTRA CARTA? \nSI>>MARQUE 1\nNO>>MARQUE 2\n\n");
+		scanf("%d",&fin);
+		if (suma>21){
+			printf("HA PERDIDO EL JUEGO!\nLA SUMA EXCEDE LOS 21\n\n");
+			fin = 2;
+		}
+	}
+	
+	//RNG
+	pc = (rand()%7)+1;
+	pc_num = pc + 16;
+	
+	//Comprueba que el jugador no se pase de 21
+	if(pc_num>21){
+		printf("PUNTAJE FINAL DEL JUGADOR: %d\nPUNTAJE FINAL DE LA PC: %d\n",suma,pc_num);
+		printf("HA GANADO EL JUEGO!\n\n");
+	}
+	
+	
+	//Comparan los valores del jugador con los resultados de la pc
+	else if(suma<=21){
+		if(suma>pc_num){
+			printf("PUNTAJE FINAL DEL JUGADOR: %d\nPUNTAJE FINAL DE LA PC: %d\n",suma,pc_num);
+			printf("HA GANADO EL JUEGO!\n\n");
+		}
+		if(suma==pc_num){
+			printf("PUNTAJE FINAL DEL JUGADOR: %d\nPUNTAJE FINAL DE LA PC: %d\n",suma,pc_num);
+			printf("JUEGO EMPATADO!!\n\n");
+		}
+		if(suma<pc_num){
+			printf("PUNTAJE FINAL DEL JUGADOR: %d\nPUNTAJE FINAL DE LA PC: %d\n",suma,pc_num);
+			printf("HA PERDIDO EL JUEGO!\n\n");
+		}
+	}
+	
+	
+	printf("Gracias por jugar!");            
+	system("pause");
+}  
+////////////////////////////////////TERMINA BLOQUES JUEGO 21////////////////////////
+
+/*{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{TERMINA FUNCIONES JUEGOS}}}}}}}}}}}}}}}}}}}}}}}}}}*/
 void recargar_creditos(){
 	printf("____________________________________________________________________\n");
 	printf("\t\t\t\tRECARGA\n");
