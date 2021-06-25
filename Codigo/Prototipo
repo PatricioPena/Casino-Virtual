@@ -6,6 +6,9 @@ void ingresar_cuenta();//TXT
 int menu_principal();
 void juego_bingo();//TODOS LOS JUEGOS LOS PUSE EN VOID POR EL MOMENTO
 void juego_ruleta();
+#define DIM 20
+char presentacion();
+void ruleta(int);
 void juego_craps();
 void juego_blackjack();
 void recargar_creditos();
